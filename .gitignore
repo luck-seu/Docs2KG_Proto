@@ -1,1 +1,7 @@
 data/*
+third_party/docs2kg/Docs2KG/kg/__pycache__/*
+third_party/docs2kg/Docs2KG/kg/utils/__pycache__/*
+third_party/docs2kg/Docs2KG/modules/__pycache__/*
+third_party/docs2kg/Docs2KG/modules/llm/__pycache__/*
+third_party/docs2kg/Docs2KG/utils/__pycache__/*
+third_party/docs2kg/Docs2KG/utils/llm/__pycache__/*

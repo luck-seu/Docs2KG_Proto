@@ -33,12 +33,17 @@ def track_usage(response: ChatCompletion) -> float:
     llm_model = response.model
     prompt_tokens = response.usage.prompt_tokens
     completion_tokens = response.usage.completion_tokens
-    input_cost = (
-        OPENAI_MODEL_PRICE[llm_model]["input_cost"]
-        * (prompt_tokens + completion_tokens)
-        / 1e6
-    )
-    output_cost = OPENAI_MODEL_PRICE[llm_model]["output_cost"] * completion_tokens / 1e6
+    input_cost = 0
+    output_cost = 0
+    if llm_model not in OPENAI_MODEL_PRICE:
+        logger.warning(f"Model {llm_model} not found in the price list")
+    else:
+        input_cost = (
+            OPENAI_MODEL_PRICE[llm_model]["input_cost"]
+            * (prompt_tokens + completion_tokens)
+            / 1e6
+        )
+        output_cost = OPENAI_MODEL_PRICE[llm_model]["output_cost"] * completion_tokens / 1e6
     logger.debug(f"Input Cost: ${input_cost}")
     logger.debug(f"Output Cost: ${output_cost}")
     total_cost = input_cost + output_cost

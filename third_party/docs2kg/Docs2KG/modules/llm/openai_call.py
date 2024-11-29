@@ -6,11 +6,14 @@ from Docs2KG.utils.get_logger import get_logger
 from Docs2KG.utils.llm.track_usage import track_usage
 
 logger = get_logger(__name__)
-client = OpenAI()
+client = OpenAI(
+    base_url = 'http://127.0.0.1:11434/v1',
+    api_key='ollama', # required, but unused
+)
 
 
 def openai_call(
-    messages: List[dict], llm_model_name: str = "gpt-3.5-turbo"
+    messages: List[dict], llm_model_name: str = "qwen2.5-coder:32b"
 ) -> Tuple[str, float]:
     """
     Call the OpenAI API to get the response

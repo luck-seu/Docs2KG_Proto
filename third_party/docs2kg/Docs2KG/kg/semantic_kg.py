@@ -360,7 +360,7 @@ class SemanticKG:
                 logger.info(f"Unique description: {unique_description}")
 
         if not unique_description:
-            return []
+            return [], None
         logger.info(f"Unique description: {unique_description}")
         mentioned_uuids = []
         # search the context
