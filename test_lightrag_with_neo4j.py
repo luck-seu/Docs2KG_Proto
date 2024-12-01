@@ -10,17 +10,11 @@ load_dotenv()
 
 
 # Constants
-WORKING_DIR = "./lightrag_working_dir/2410.17600v1.pdf"
+WORKING_DIR = "./lightrag_working_dir/neo4jWorkDir"
 # logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
 
 if not os.path.exists(WORKING_DIR):
     os.mkdir(WORKING_DIR)
-
-# Neo4j connection credentials
-NEO4J_URI = os.environ["NEO4J_URI"]
-NEO4J_USERNAME = os.environ["NEO4J_USERNAME"]
-NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
-
 
 def main():
     rag = LightRAG(
@@ -40,8 +34,12 @@ def main():
         graph_storage="Neo4JStorage",
     )
     
-    query_result = rag.query("What are the main methods in this paper?", param=QueryParam(mode="local"))
-    print(query_result)
+    with open("./lightrag_working_dir/book.txt") as f:
+        rag.insert(f.read())
+    
+    print(
+        rag.query("What are the top themes in this story?", param=QueryParam(mode="naive"))
+    )
 
 
 if __name__ == "__main__":

@@ -6,3 +6,4 @@ third_party/docs2kg/Docs2KG/modules/llm/__pycache__/*
 third_party/docs2kg/Docs2KG/utils/__pycache__/*
 third_party/docs2kg/Docs2KG/utils/llm/__pycache__/*
 lightrag_working_dir/*
+.env
